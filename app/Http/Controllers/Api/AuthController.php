@@ -75,4 +75,9 @@ class AuthController {
 
         return response()->json('nguoi dung khong ton tai');
     }
+
+    public function test()
+    {
+
+    }
 }

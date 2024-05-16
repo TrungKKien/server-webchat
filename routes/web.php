@@ -22,7 +22,6 @@ Route::get('/', function () {
 // Route::get('login', 'App\Http\Controllers\LayoutsController@Getlogin');
 
 // Route::get('{page}', [LayoutsController::class, 'Get{page}']);
-Route::get('/login', [LoginController::class, "GetLogin"]);
 
 // Route::get('login', [LayoutsController::class, "Getlogin"]);
 

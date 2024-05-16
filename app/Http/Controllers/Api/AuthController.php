@@ -42,7 +42,7 @@ class AuthController {
 
         $attributes = $request->validated();
         $token = $this->authRepository->register($attributes);
-
+//        \Log::debug($attributes);
         if (!$token) {
             return response()->json([
                 'message' => 'Register fail'
@@ -51,6 +51,7 @@ class AuthController {
 
         return response()->json([
             'messsage' => 'Register sucessfully',
+            'token' => $token
         ]);
     }
 

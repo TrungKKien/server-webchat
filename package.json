@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "laravel-echo": "^1.15.3",
+        "laravel-echo-vue3": "^1.0.1",
         "socket.io": "^4.7.2"
     }
 }

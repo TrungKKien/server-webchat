@@ -48,4 +48,13 @@ class GroupController extends Controller
         ]);
     }
 
+    function update(Request $request, string $id): JsonResponse
+    {
+        $this->groupRepository->updateName($request, $id);
+
+        return response()->json([
+            'message' => "update thanh cong"
+        ]);
+    }
+
 }

@@ -2,7 +2,10 @@
 
 namespace App\Repositories;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AuthRepository
 {
@@ -20,12 +23,19 @@ class AuthRepository
         return false;
     }
 
+
     public function register($attributes): bool
     {
+        if (!isset($attributes['avatar'])){
+            $avatar_name = null;
+        }else{
+            $avatar_name = $this->handleImageAvatar($attributes['avatar']);
+        }
         $register = [
             'name' => $attributes['name'],
             'password' => $attributes['password'],
-            'phonenumber' => $attributes['phonenumber']
+            'phonenumber' => $attributes['phonenumber'],
+            'avatar' => $avatar_name
         ];
 
         $user = User::query()->create($register);
@@ -37,6 +47,14 @@ class AuthRepository
         return false;
     }
 
+    public function handleImageAvatar(UploadedFile $file_upload)
+    {
+        $file_name = 'images/' . Str::uuid() .'_'. $file_upload->getClientOriginalName();
+//        \Log::debug($file_upload);
+        Storage::disk('public')->put($file_name, file_get_contents($file_upload));
+
+        return $file_name;
+    }
     public function getFriend($phonenumber)
     {
         return User::where('phonenumber', $phonenumber)->get();

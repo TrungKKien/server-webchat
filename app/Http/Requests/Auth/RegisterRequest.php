@@ -7,6 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
 {
+    public mixed $avatar;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -26,7 +28,7 @@ class RegisterRequest extends FormRequest
             'name' => 'required',
             'phonenumber' => 'required|unique:users,phonenumber',
             'password' => 'required',
-//            'avatar' => 'required',
+            'avatar' => 'file',
         ];
     }
 }

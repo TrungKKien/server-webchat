@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('', function () {
     return response()->json('oke');
 });
-
+//test
+Route::post('testUploadImage', [AuthController::class, 'testUploadImage']);
+//
 Route::group(['prefix' => 'auth'], function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
@@ -45,4 +47,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::put('{id}', [MessageController::class, 'update']);
         Route::delete('{id}', [MessageController::class, 'destroy']);
     });
+
+});
+Route::middleware('auth:sanctum')
+    ->post('/broadcasting/auth', function (Request $request) {
+    return true;
 });

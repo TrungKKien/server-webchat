@@ -16,7 +16,7 @@ class AuthController {
         $this->authRepository = new AuthRepository();
     }
 
-    public function login(LoginRequest $request): JsonResponse
+    public function login(LoginRequest $request): JsonResponsehuh
     {
         $attributes = $request->validated();
         $token = $this->authRepository->login($attributes);
